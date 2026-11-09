@@ -10,21 +10,15 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/login.css">
 </head>
-<body class="tone-page-orange">
+<body class="tone-page-orange login-page">
 
 <header class="site-header">
   <div class="container">
     <a href="index.html" class="brand">Chaos <span>Français</span></a>
     <nav class="nav" id="site-nav">
       <a href="index.html">Accueil</a>
-      <a href="eloquence.html">Éloquence</a>
-      <a href="histoires.html">Histoires</a>
-      <a href="memes.html">Mèmes</a>
-      <a href="fake-news.html">Fake News</a>
-      <a href="image-histoire.html">Image → Histoire</a>
-      <a href="improvisation.html">Improvisation</a>
-      <a href="classe.html">Tirage au sort</a>
       <a href="login.html" aria-current="page">Connexion</a>
       <span id="auth-status" class="nav-auth"></span>
     </nav>
@@ -35,67 +29,78 @@
 </header>
 
 <main>
-  <div class="page-head">
-    <div class="container">
-      <span class="eyebrow-tag">Comptes</span>
-      <h1>Connexion</h1>
-      <p>Réservée aux enseignants et à l'administrateur. Les élèves n'ont besoin d'aucun compte pour participer aux sept ateliers.</p>
+  <section class="login-intro">
+    <div class="container login-intro-inner">
+      <span class="eyebrow-tag">LE CARNET RESTE OUVERT</span>
+      <h1>Prêt·e à remettre<br><span>un peu de chaos ?</span></h1>
+      <p>Retrouve ta classe, tes idées et tes ateliers. On garde une page pour toi.</p>
+      <span class="login-doodle" aria-hidden="true">✎</span>
+      <span class="login-sparkle" aria-hidden="true">✦</span>
     </div>
-  </div>
+  </section>
 
-  <div class="page-main">
-    <div class="container two-col">
+  <section class="login-main" aria-label="Accès à Chaos Français">
+    <div class="container login-grid">
+      <section class="notebook-card notebook-blue" aria-labelledby="login-heading">
+        <div class="notebook-holes" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="card-note">Pour les profs & l’équipe</div>
+        <span class="card-sticker" aria-hidden="true">BONJOUR !</span>
+        <h2 id="login-heading">On reprend le fil ?</h2>
+        <p class="card-description">Connecte-toi pour retrouver tes classes et préparer la prochaine séance.</p>
 
-      <div>
-        <div class="panel">
-          <p class="panel-title">Enseignant ou administrateur</p>
+        <form id="login-form">
           <div class="field">
-            <label for="login-username">Identifiant</label>
-            <input type="text" id="login-username" autocomplete="username">
+            <label for="login-username">Ton identifiant</label>
+            <input type="text" id="login-username" autocomplete="username" placeholder="ex. madame-lea" required>
           </div>
           <div class="field">
-            <label for="login-password">Mot de passe</label>
-            <input type="password" id="login-password" autocomplete="current-password">
+            <label for="login-password">Ton mot de passe</label>
+            <input type="password" id="login-password" autocomplete="current-password" placeholder="••••••••" required>
           </div>
-          <button class="btn btn-orange" id="login-submit" type="button">Se connecter</button>
-          <p id="login-error" style="color: var(--red-dark); margin-top: 12px;"></p>
-          <p><button class="text-link" id="forgot-password-toggle" type="button">Mot de passe oublié ?</button></p>
-          <div id="forgot-password-panel" hidden>
-            <label for="forgot-username">Identifiant du compte</label>
-            <input type="text" id="forgot-username" autocomplete="username">
-            <button class="btn btn-secondary" id="forgot-password-submit" type="button">Envoyer le lien</button>
-            <p id="forgot-password-feedback" role="status"></p>
-          </div>
+          <button class="btn btn-orange login-submit" id="login-submit" type="submit">Ouvrir mon carnet <span aria-hidden="true">→</span></button>
+          <p id="login-error" class="form-feedback" role="alert" aria-live="polite"></p>
+        </form>
+
+        <button class="text-link forgot-toggle" id="forgot-password-toggle" type="button">Oups, mot de passe oublié ?</button>
+        <div class="forgot-panel" id="forgot-password-panel" hidden>
+          <label for="forgot-username">Identifiant du compte</label>
+          <input type="text" id="forgot-username" autocomplete="username" placeholder="Ton identifiant">
+          <button class="btn btn-secondary" id="forgot-password-submit" type="button">M’envoyer un lien</button>
+          <p id="forgot-password-feedback" class="form-feedback" role="status"></p>
         </div>
-      </div>
+      </section>
 
-      <div>
-        <div class="panel">
-          <p class="panel-title">Compte élève (facultatif)</p>
-          <p>Un compte élève permet de retrouver son historique et ses badges d'une séance à l'autre. Il n'est jamais nécessaire pour participer : aucune adresse email n'est demandée.</p>
-          <div class="field">
-            <label for="register-name">Prénom</label>
-            <input type="text" id="register-name">
-          </div>
-          <div class="field">
-            <label for="register-email">E-mail pour récupérer le compte (facultatif)</label>
-            <input type="email" id="register-email" autocomplete="email">
-          </div>
-          <div class="field">
-            <label for="register-username">Identifiant choisi</label>
-            <input type="text" id="register-username">
-          </div>
-          <div class="field">
-            <label for="register-password">Mot de passe</label>
-            <input type="password" id="register-password">
-          </div>
-          <button class="btn btn-secondary" id="register-submit" type="button">Créer mon compte</button>
-          <p id="register-feedback" style="margin-top: 12px;"></p>
-        </div>
-      </div>
+      <section class="notebook-card notebook-peach" aria-labelledby="register-heading">
+        <div class="notebook-holes" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="card-note">Pour les élèves</div>
+        <span class="card-sticker sticker-peach" aria-hidden="true">À TOI !</span>
+        <h2 id="register-heading">Ta première page</h2>
+        <p class="card-description">Crée un compte pour garder tes productions et tes badges d’une séance à l’autre.</p>
 
+        <form id="register-form">
+          <div class="field">
+            <label for="register-name">Ton prénom</label>
+            <input type="text" id="register-name" autocomplete="given-name" placeholder="ex. Lina" required>
+          </div>
+          <div class="field">
+            <label for="register-email">E-mail <span>(facultatif)</span></label>
+            <input type="email" id="register-email" autocomplete="email" placeholder="Pour récupérer ton compte">
+          </div>
+          <div class="field">
+            <label for="register-username">Choisis un identifiant</label>
+            <input type="text" id="register-username" autocomplete="username" placeholder="ex. lina-bleu" required>
+          </div>
+          <div class="field">
+            <label for="register-password">Choisis un mot de passe</label>
+            <input type="password" id="register-password" autocomplete="new-password" placeholder="6 caractères minimum" minlength="6" required>
+          </div>
+          <button class="btn btn-secondary register-submit" id="register-submit" type="submit">Créer mon compte <span aria-hidden="true">✦</span></button>
+          <p id="register-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+        </form>
+        <p class="student-note"><span aria-hidden="true">☀</span> Pas besoin de compte pour jouer en classe : ton professeur te guidera !</p>
+      </section>
     </div>
-  </div>
+  </section>
 </main>
 
 <footer class="site-footer">

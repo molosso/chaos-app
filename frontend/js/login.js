@@ -5,12 +5,14 @@
 (function () {
   const loginUsername = document.getElementById("login-username");
   const loginPassword = document.getElementById("login-password");
+  const loginForm = document.getElementById("login-form");
   const loginSubmit = document.getElementById("login-submit");
   const loginError = document.getElementById("login-error");
 
   const registerName = document.getElementById("register-name");
   const registerUsername = document.getElementById("register-username");
   const registerPassword = document.getElementById("register-password");
+  const registerForm = document.getElementById("register-form");
   const registerSubmit = document.getElementById("register-submit");
   const registerFeedback = document.getElementById("register-feedback");
   const forgotToggle = document.getElementById("forgot-password-toggle");
@@ -19,8 +21,11 @@
   const forgotSubmit = document.getElementById("forgot-password-submit");
   const forgotFeedback = document.getElementById("forgot-password-feedback");
 
-  loginSubmit.addEventListener("click", async function () {
+  loginForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
     loginError.textContent = "";
+    loginSubmit.disabled = true;
+    loginSubmit.innerHTML = "Ouverture du carnet…";
     try {
       const user = await chaosLogin(loginUsername.value.trim(), loginPassword.value);
       if (user.role === "admin") {
@@ -31,13 +36,21 @@
         window.location.href = "ateliers.html";
       }
     } catch (error) {
-      loginError.textContent = error.message;
+      loginError.textContent = error instanceof TypeError
+        ? "Le serveur ne répond pas pour le moment. Réessaie dans un instant."
+        : error.message;
+    } finally {
+      loginSubmit.disabled = false;
+      loginSubmit.innerHTML = 'Ouvrir mon carnet <span aria-hidden="true">→</span>';
     }
   });
 
-  registerSubmit.addEventListener("click", async function () {
+  registerForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
     registerFeedback.textContent = "";
     registerFeedback.style.color = "var(--ink-soft)";
+    registerSubmit.disabled = true;
+    registerSubmit.innerHTML = "Création du compte…";
     try {
       await apiFetchJson("/accounts/students/register/", {
         method: "POST",
@@ -53,6 +66,9 @@
     } catch (error) {
       registerFeedback.style.color = "var(--red-dark)";
       registerFeedback.textContent = "Impossible de créer ce compte (identifiant déjà pris ?).";
+    } finally {
+      registerSubmit.disabled = false;
+      registerSubmit.innerHTML = 'Créer mon compte <span aria-hidden="true">✦</span>';
     }
   });
 

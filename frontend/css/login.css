@@ -1,0 +1,181 @@
+/* Login page: a friendly, colour coded school notebook. */
+.login-page {
+  background-color: #fbf8ee;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(53, 83, 125, .11) 1px, transparent 1.5px),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(64, 116, 176, .075) 31px 32px);
+  background-size: 22px 22px, auto;
+}
+
+.login-page .site-header {
+  background: rgba(251, 248, 238, .94);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--ink);
+}
+
+.login-page .site-header .container { height: 68px; }
+.login-page .brand { font-size: 1.3rem; }
+.login-page .nav a[aria-current="page"] { background: #f8e8c8; }
+
+.login-intro {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(42px, 7vw, 76px) 0 35px;
+  text-align: center;
+}
+
+.login-intro-inner { position: relative; }
+.login-intro .eyebrow-tag { background: var(--orange); transform: rotate(-2deg); }
+.login-intro h1 {
+  margin: 8px 0 14px;
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+.login-intro h1 span { color: var(--red); }
+.login-intro p { margin: 0 auto; font-size: 1.08rem; }
+.login-doodle, .login-sparkle {
+  position: absolute;
+  color: var(--blue);
+  font-size: 3.5rem;
+  line-height: 1;
+  opacity: .85;
+  pointer-events: none;
+}
+.login-doodle { left: 12%; top: 34%; transform: rotate(-24deg); }
+.login-sparkle { right: 13%; top: 18%; color: var(--yellow-dark); transform: rotate(12deg); }
+
+.login-main { padding: 18px 0 82px; }
+.login-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .94fr);
+  gap: clamp(20px, 4vw, 42px);
+  align-items: start;
+  max-width: 1000px;
+}
+
+.notebook-card {
+  --notebook-accent: var(--blue);
+  --notebook-tint: #f1f5ff;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  padding: 34px clamp(23px, 4vw, 42px) 30px 56px;
+  border: 2px solid var(--ink);
+  border-radius: 10px 15px 12px 8px;
+  background-color: var(--notebook-tint);
+  background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgba(65, 119, 177, .13) 31px 32px);
+  box-shadow: 5px 6px 0 var(--ink), 0 15px 32px rgba(38, 34, 25, .08);
+}
+
+.notebook-card::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 35px;
+  width: 2px;
+  background: rgba(212, 61, 36, .42);
+  content: "";
+}
+
+.notebook-blue { --notebook-accent: var(--blue); --notebook-tint: #f1f5ff; transform: rotate(-.5deg); }
+.notebook-peach { --notebook-accent: var(--orange-dark); --notebook-tint: #fff5e9; transform: rotate(.55deg); }
+.notebook-holes {
+  position: absolute;
+  top: 29px;
+  bottom: 29px;
+  left: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.notebook-holes i {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(22, 24, 31, .52);
+  border-radius: 50%;
+  background: #fbf8ee;
+  box-shadow: inset 1px 1px 2px rgba(22, 24, 31, .15);
+}
+
+.card-note {
+  margin-bottom: 16px;
+  color: var(--notebook-accent);
+  font: 600 .72rem var(--font-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.card-sticker {
+  position: absolute;
+  top: 22px;
+  right: 18px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 2px solid var(--blue-dark);
+  border-radius: 50%;
+  background: #dfe8ff;
+  color: var(--blue-dark);
+  font: 700 .58rem var(--font-mono);
+  text-align: center;
+  transform: rotate(9deg);
+}
+.sticker-peach { border-color: var(--red-dark); background: #ffe0cf; color: var(--red-dark); transform: rotate(-8deg); }
+.notebook-card h2 { max-width: 14ch; margin-bottom: 9px; font-size: clamp(1.65rem, 3vw, 2.1rem); }
+.card-description { min-height: 3em; margin-bottom: 23px; font-size: .94rem; }
+
+.notebook-card .field { margin: 0 0 15px; }
+.notebook-card label { color: var(--ink); font: 600 .78rem var(--font-mono); }
+.notebook-card label span { color: var(--ink-faint); font-weight: 400; }
+.notebook-card input {
+  display: block;
+  width: 100%;
+  min-height: 47px;
+  padding: 10px 13px;
+  border: 1.5px solid #aaa9a2;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .88);
+  color: var(--ink);
+  font: 500 .95rem var(--font-display);
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.notebook-card input::placeholder { color: #a1a1a0; }
+.notebook-card input:focus { border-color: var(--notebook-accent); background: #fff; box-shadow: 0 0 0 3px color-mix(in srgb, var(--notebook-accent) 17%, transparent); outline: 0; }
+.login-submit, .register-submit { width: 100%; min-height: 51px; justify-content: center; margin-top: 4px; }
+.login-submit { border-color: var(--orange-dark); box-shadow: 3px 3px 0 var(--orange-dark); }
+.login-submit span, .register-submit span { font-size: 1.15rem; }
+.register-submit { background: #fff; }
+.form-feedback { min-height: 1.35em; margin: 10px 0 0; font-size: .85rem; }
+.form-feedback:empty { display: none; }
+.forgot-toggle { display: inline-block; margin-top: 7px; padding: 4px 0; color: var(--blue-dark); font-size: .84rem; }
+.forgot-panel { margin-top: 13px; padding: 15px; border: 1px dashed var(--notebook-accent); border-radius: 8px; background: rgba(255, 255, 255, .65); }
+.forgot-panel[hidden] { display: none; }
+.forgot-panel .btn { margin-top: 10px; }
+.student-note { display: flex; gap: 9px; align-items: flex-start; margin: 14px 0 0; padding-top: 13px; border-top: 1px dashed rgba(22, 24, 31, .25); font-size: .82rem; }
+.student-note span { color: var(--yellow-dark); font-size: 1.1rem; line-height: 1.2; }
+
+.login-page .site-footer { padding-top: 0; }
+
+@media (max-width: 760px) {
+  .login-grid { grid-template-columns: 1fr; max-width: 560px; gap: 25px; }
+  .notebook-blue, .notebook-peach { transform: none; }
+  .login-doodle { left: 4%; top: 15%; font-size: 2.4rem; }
+  .login-sparkle { right: 5%; top: 8%; font-size: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .login-intro { padding-top: 42px; }
+  .login-intro h1 { font-size: clamp(2.35rem, 12vw, 3.4rem); }
+  .login-doodle { left: 0; top: 9%; }
+  .login-sparkle { right: 1%; top: 3%; }
+  .notebook-card { padding: 29px 20px 25px 48px; }
+  .notebook-card::before { left: 30px; }
+  .card-sticker { top: 17px; right: 12px; width: 48px; height: 48px; font-size: .5rem; }
+  .notebook-card h2 { padding-right: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notebook-card input { transition: none; }
+}
