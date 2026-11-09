@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaos Français - le terrain de jeu pour parler français</title>
+<meta name="description" content="Sept ateliers pour improviser, écrire et parler français : éloquence, histoires, mèmes, fake news et plus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body class="landing-page">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">Chaos <span>Français</span></a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html" aria-current="page">Accueil</a>
+      <a href="login.html">Connexion</a>
+      <span id="auth-status" class="nav-auth"></span>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow-tag">LE TERRAIN DE JEU DU FRANÇAIS</span>
+        <h1>Parler français,<br><span>sans filet.</span></h1>
+        <p class="lede">Une idée, une contrainte inattendue, et c’est parti. Écris, improvise et prends la parole dans une aventure guidée par ton professeur.</p>
+        <a class="btn btn-red landing-cta" id="landing-cta" href="login.html">Commencer l’aventure</a>
+        <div class="landing-promises" aria-label="Les ingrédients du jeu">
+          <span>Une idée à défendre</span><span>Une contrainte surprise</span><span>Ta voix, ton français</span>
+        </div>
+      </div>
+
+      <div class="wheel-wrap" hidden>
+        <div class="wheel-stage">
+          <div class="wheel-pointer" aria-hidden="true"></div>
+          <svg class="wheel-disc" id="wheel-disc" viewBox="0 0 200 200" role="img" aria-label="Roue du chaos">
+            <!-- segments drawn by wheel.js -->
+          </svg>
+          <div class="wheel-hub" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>
+            </svg>
+          </div>
+        </div>
+        <button class="btn" id="wheel-spin" type="button">Tourner la roue</button>
+        <div class="prompt-box wheel-result" id="wheel-result" hidden>
+          <dl>
+            <dt>Sujet</dt><dd id="wheel-sujet"></dd>
+            <dt>Style</dt><dd id="wheel-style"></dd>
+            <dt>Format</dt><dd id="wheel-format"></dd>
+            <dt>Contrainte</dt><dd id="wheel-contrainte"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modules" id="modules" hidden>
+    <div class="container">
+      <div class="modules-head">
+        <h2>Sept ateliers</h2>
+        <p>Chacun se joue seul, en dix minutes, sans matériel particulier.</p>
+      </div>
+
+      <div class="module-grid">
+
+        <a class="module-card tone-red" href="eloquence.html">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path d="M19 11a7 7 0 0 1-14 0M12 19v3"/></svg>
+          </div>
+          <h3>Studio d'éloquence</h3>
+          <p>Un sujet à défendre, des mots imposés, une minute pour préparer et un score sur quatre critères.</p>
+          <span class="tag">Oral · solo</span>
+        </a>
+
+        <a class="module-card tone-blue" href="histoires.html">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+          </div>
+          <h3>Générateur d'histoires</h3>
+          <p>Un personnage, un lieu et un objet imposés, avec un temps grammatical obligatoire et un mot interdit.</p>
+          <span class="tag">Écrit · 5 formats</span>
+        </a>
+
+        <a class="module-card tone-yellow" href="memes.html">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 15l-5-4-4 3-3-2-6 5"/></svg>
+          </div>
+          <h3>Générateur de mèmes</h3>
+          <p>Importez votre propre image, écrivez une légende qui correspond à une situation donnée.</p>
+          <span class="tag">Écrit · image perso</span>
+        </a>
+
+        <a class="module-card tone-green" href="fake-news.html">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h13v14a2 2 0 0 0 2 2H8a4 4 0 0 1-4-4V4Z"/><path d="M19 8v10a2 2 0 0 1-2 2"/><path d="M8 8h6M8 12h6M8 16h3"/></svg>
+          </div>
+          <h3>Fake News Academy</h3>
+          <p>Un titre, un article et une présentation orale à écrire à partir d'une actualité inventée.</p>
+          <span class="tag">Écrit + oral</span>
+        </a>
+
+        <a class="module-card tone-teal" href="image-histoire.html">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <h3>Image → Histoire</h3>
+          <p>Importez une image et racontez ce qui s'est passé avant, pendant ou après, en dix phrases minimum.</p>
+          <span class="tag">Écrit · image perso</span>
+        </a>
+
+        <a class="module-card tone-pink" href="improvisation.html">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 10c0-2.5 1.5-4 3-4s3 1.5 3 4-1.5 5-3 5-3-2.5-3-5Z"/><path d="M6 20c1-3 3-4 6-4s5 1 6 4"/></svg>
+          </div>
+          <h3>Improvisation</h3>
+          <p>Un personnage, une situation et un objectif tirés au sort, avec un minuteur pour se lancer tout de suite.</p>
+          <span class="tag">Oral · solo</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="classroom-band" hidden>
+    <div class="container two-col">
+      <div>
+        <h2>Qui passe à l'oral ?</h2>
+        <p>Le professeur entre les prénoms de la classe, puis tire au sort qui lit son travail. Chaque prénom ne sort qu'une fois par tour, jusqu'à ce que tout le monde soit passé.</p>
+        <p>Cet outil fonctionne sur l'appareil affiché en classe, par exemple l'ordinateur relié au vidéoprojecteur.</p>
+        <a class="btn btn-blue" href="classe.html">Ouvrir le tirage au sort</a>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Ce que la classe peut gagner</p>
+        <div class="badge-list">
+          <span class="badge">Maître du sarcasme</span>
+          <span class="badge">Poète fou</span>
+          <span class="badge">Journaliste du futur</span>
+          <span class="badge">Orateur légendaire</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Chaos Français</span>
+    <span>Sept ateliers pour pratiquer l'oral et l'écrit en français.</span>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/landing.js"></script>
+</body>
+</html>

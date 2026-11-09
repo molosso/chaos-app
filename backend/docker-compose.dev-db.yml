@@ -1,0 +1,18 @@
+# Lance uniquement PostgreSQL en local pour le développement.
+# Django tourne directement sur la machine (python manage.py runserver),
+# pas besoin de conteneuriser le backend pour développer.
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: chaos
+      POSTGRES_PASSWORD: chaos
+      POSTGRES_DB: chaos_francais
+    ports:
+      - "5432:5432"
+    volumes:
+      - chaos_pg_data:/var/lib/postgresql/data
+
+volumes:
+  chaos_pg_data:

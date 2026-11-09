@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administration - Chaos Français</title>
+<meta name="description" content="Interface d'administration : gestion de tous les comptes enseignants et élèves.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body class="tone-page-blue">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">Chaos <span>Français</span></a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html">Accueil</a>
+      <a href="classe.html">Tirage au sort</a>
+      <a href="admin.html" aria-current="page">Administration</a>
+      <span id="auth-status" class="nav-auth"></span>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow-tag">Réservé à l'administrateur</span>
+      <h1>Administration</h1>
+      <p>Tous les comptes de l'établissement au même endroit : créer, désactiver, réinitialiser un mot de passe ou supprimer. Le contenu pédagogique des ateliers se modifie dans l'<a id="django-admin-link" href="#">interface de contenu</a>.</p>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <div class="container">
+
+      <div id="guest-notice" class="notice" style="max-width: 640px;" hidden>
+        <p>Cette page est réservée au compte administrateur. <a href="login.html">Connectez-vous</a> avec un compte administrateur pour y accéder.</p>
+      </div>
+
+      <div id="admin-area" hidden>
+
+        <div class="stat-grid" id="stat-grid"></div>
+
+        <div class="panel">
+          <p class="panel-title">Créer un compte</p>
+          <div class="form-row">
+            <div>
+              <label for="new-username">Identifiant</label>
+              <input type="text" id="new-username" autocomplete="off">
+            </div>
+            <div>
+              <label for="new-firstname">Prénom ou nom affiché</label>
+              <input type="text" id="new-firstname" autocomplete="off">
+            </div>
+            <div>
+              <label for="new-role">Rôle</label>
+              <select id="new-role">
+                <option value="teacher">Enseignant</option>
+                <option value="student">Élève</option>
+                <option value="admin">Administrateur</option>
+              </select>
+            </div>
+            <div>
+              <label for="new-password">Mot de passe initial</label>
+              <input type="password" id="new-password" autocomplete="new-password">
+            </div>
+          </div>
+          <button class="btn btn-blue" id="create-user" type="button">Créer le compte</button>
+          <p id="create-feedback" style="margin: 12px 0 0;"></p>
+        </div>
+
+        <div class="panel" id="reset-panel" hidden>
+          <p class="panel-title">Réinitialiser le mot de passe de <span id="reset-target" class="mono"></span></p>
+          <div class="form-row">
+            <div>
+              <label for="reset-password">Nouveau mot de passe</label>
+              <input type="password" id="reset-password" autocomplete="new-password">
+            </div>
+          </div>
+          <button class="btn btn-blue" id="reset-confirm" type="button">Enregistrer</button>
+          <button class="btn btn-secondary" id="reset-cancel" type="button">Annuler</button>
+          <p id="reset-feedback" style="margin: 12px 0 0;"></p>
+        </div>
+
+        <div class="panel" id="edit-user-panel" hidden>
+          <p class="panel-title">Modifier le compte <span id="edit-user-target" class="mono"></span></p>
+          <div class="form-row">
+            <div><label for="edit-user-firstname">Nom affiché</label><input id="edit-user-firstname" maxlength="150"></div>
+            <div><label for="edit-user-email">Email</label><input id="edit-user-email" type="email"></div>
+            <div><label for="edit-user-role">Rôle</label><select id="edit-user-role"><option value="teacher">Enseignant</option><option value="student">Élève</option><option value="admin">Administrateur</option></select></div>
+            <div><label for="edit-user-institution">Établissement</label><input id="edit-user-institution" maxlength="255"></div>
+          </div>
+          <button class="btn btn-blue" id="edit-user-save" type="button">Enregistrer</button>
+          <button class="btn btn-secondary" id="edit-user-cancel" type="button">Annuler</button>
+          <p id="edit-user-feedback" role="status"></p>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Activité récente</p>
+          <div id="activity-chart" class="activity-chart" role="img" aria-label="Nombre d'actions enregistrées chaque jour sur la semaine passée"></div>
+          <div id="activity-feed" class="admin-activity-feed" aria-live="polite"></div>
+          <p id="activity-empty" style="margin: 14px 0 0;" hidden>Aucune activité enregistrée.</p>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Comptes</p>
+          <div class="toolbar">
+            <div class="chip-group" id="role-filter">
+              <button class="chip" type="button" data-role="" aria-pressed="true">Tous</button>
+              <button class="chip" type="button" data-role="teacher" aria-pressed="false">Enseignants</button>
+              <button class="chip" type="button" data-role="student" aria-pressed="false">Élèves</button>
+              <button class="chip" type="button" data-role="admin" aria-pressed="false">Administrateurs</button>
+            </div>
+            <input type="text" id="search-input" placeholder="Rechercher un identifiant ou un nom">
+            <button class="btn btn-secondary" id="export-users" type="button">Exporter CSV</button>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Identifiant</th>
+                  <th>Nom affiché</th>
+                  <th>Rôle</th>
+                  <th>Classes</th>
+                  <th>Dernière connexion</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="users-body"></tbody>
+            </table>
+          </div>
+          <div class="toolbar" aria-label="Pagination des comptes">
+            <button class="btn btn-secondary" id="users-previous" type="button" disabled>Précédent</button>
+            <span id="users-page-status" class="mono" aria-live="polite"></span>
+            <button class="btn btn-secondary" id="users-next" type="button" disabled>Suivant</button>
+          </div>
+          <p id="users-empty" style="margin: 14px 0 0;" hidden>Aucun compte ne correspond.</p>
+          <p id="users-feedback" style="margin: 12px 0 0;"></p>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Classes de l'établissement</p>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Classe</th>
+                  <th>Enseignant</th>
+                  <th>Élèves</th>
+                  <th>Déjà passés ce tour</th>
+                </tr>
+              </thead>
+              <tbody id="classrooms-body"></tbody>
+            </table>
+          </div>
+          <p id="classrooms-empty" style="margin: 14px 0 0;" hidden>Aucune classe créée pour le moment.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Chaos Français</span>
+    <a href="index.html">Retour à l'accueil</a>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

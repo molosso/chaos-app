@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion - Chaos Français</title>
+<meta name="description" content="Connexion enseignant ou administrateur, et création facultative d'un compte élève.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body class="tone-page-orange">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">Chaos <span>Français</span></a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html">Accueil</a>
+      <a href="eloquence.html">Éloquence</a>
+      <a href="histoires.html">Histoires</a>
+      <a href="memes.html">Mèmes</a>
+      <a href="fake-news.html">Fake News</a>
+      <a href="image-histoire.html">Image → Histoire</a>
+      <a href="improvisation.html">Improvisation</a>
+      <a href="classe.html">Tirage au sort</a>
+      <a href="login.html" aria-current="page">Connexion</a>
+      <span id="auth-status" class="nav-auth"></span>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow-tag">Comptes</span>
+      <h1>Connexion</h1>
+      <p>Réservée aux enseignants et à l'administrateur. Les élèves n'ont besoin d'aucun compte pour participer aux sept ateliers.</p>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <div class="container two-col">
+
+      <div>
+        <div class="panel">
+          <p class="panel-title">Enseignant ou administrateur</p>
+          <div class="field">
+            <label for="login-username">Identifiant</label>
+            <input type="text" id="login-username" autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="login-password">Mot de passe</label>
+            <input type="password" id="login-password" autocomplete="current-password">
+          </div>
+          <button class="btn btn-orange" id="login-submit" type="button">Se connecter</button>
+          <p id="login-error" style="color: var(--red-dark); margin-top: 12px;"></p>
+          <p><button class="text-link" id="forgot-password-toggle" type="button">Mot de passe oublié ?</button></p>
+          <div id="forgot-password-panel" hidden>
+            <label for="forgot-username">Identifiant du compte</label>
+            <input type="text" id="forgot-username" autocomplete="username">
+            <button class="btn btn-secondary" id="forgot-password-submit" type="button">Envoyer le lien</button>
+            <p id="forgot-password-feedback" role="status"></p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <p class="panel-title">Compte élève (facultatif)</p>
+          <p>Un compte élève permet de retrouver son historique et ses badges d'une séance à l'autre. Il n'est jamais nécessaire pour participer : aucune adresse email n'est demandée.</p>
+          <div class="field">
+            <label for="register-name">Prénom</label>
+            <input type="text" id="register-name">
+          </div>
+          <div class="field">
+            <label for="register-email">E-mail pour récupérer le compte (facultatif)</label>
+            <input type="email" id="register-email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="register-username">Identifiant choisi</label>
+            <input type="text" id="register-username">
+          </div>
+          <div class="field">
+            <label for="register-password">Mot de passe</label>
+            <input type="password" id="register-password">
+          </div>
+          <button class="btn btn-secondary" id="register-submit" type="button">Créer mon compte</button>
+          <p id="register-feedback" style="margin-top: 12px;"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Chaos Français</span>
+    <a href="index.html">Retour à l'accueil</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

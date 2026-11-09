@@ -1,0 +1,8 @@
+.env
+backend/venv/
+/.venv/
+backend/.env
+backend/check.sqlite3
+__pycache__/
+*.pyc
+backend/staticfiles/

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mes activités · Chaos Français</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="tone-page-orange">
+<header class="site-header"><div class="container">
+  <a href="index.html" class="brand">Chaos <span>Français</span></a>
+  <nav class="nav" id="site-nav"><a href="index.html">Accueil</a><a href="ateliers.html" aria-current="page">Mes activités</a><a href="classe.html" id="class-link">Mes classes</a><a href="admin.html" id="admin-link">Administration</a><span id="auth-status" class="nav-auth"></span></nav>
+  <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+</div></header>
+<main class="container" style="padding-block:48px 80px">
+  <section class="hero-copy" style="max-width:760px"><p class="eyebrow" id="workspace-kicker">VOTRE ESPACE</p><h1 id="workspace-title">On prépare le terrain…</h1><p class="lede" id="workspace-intro">Chargement de vos activités.</p></section>
+  <p id="workspace-feedback" role="status" aria-live="polite"></p>
+  <section id="student-join" class="panel" hidden>
+    <h2>Rejoindre votre classe</h2><p>Demandez à votre professeur son code à 8 caractères. Les ateliers proposés par votre classe apparaîtront ici.</p>
+    <form id="join-class-form" class="toolbar"><label for="join-class-code">Code de classe</label><input id="join-class-code" type="text" inputmode="text" autocomplete="off" minlength="8" maxlength="8" pattern="[A-Za-z0-9]{8}" required><button class="btn btn-red" type="submit">Rejoindre la classe</button></form>
+    <div id="joined-class-list" class="badge-list" aria-live="polite"></div>
+  </section>
+  <section id="workshop-grid" class="module-grid" aria-live="polite"></section>
+  <section id="teacher-tools" class="panel" hidden><h2>Partager une ressource</h2><form id="resource-form" class="form-row">
+    <label>Atelier<select id="resource-workshop" required></select></label><label>Titre<input id="resource-title" maxlength="180" required></label><label>Lien<input id="resource-url" type="url" placeholder="https://…" required></label><label>Description<input id="resource-description" maxlength="500"></label><button class="btn btn-red" type="submit">Publier la ressource</button>
+  </form></section>
+</main>
+<script src="js/api.js"></script><script src="js/auth.js"></script><script src="js/ateliers.js"></script>
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio d'éloquence - Chaos Français</title>
+<meta name="description" content="Défendez un sujet absurde à l'oral, avec des mots imposés et un temps de préparation limité.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body class="tone-page-red">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">Chaos <span>Français</span></a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html">Accueil</a>
+      <a href="eloquence.html" aria-current="page">Éloquence</a>
+      <a href="histoires.html">Histoires</a>
+      <a href="memes.html">Mèmes</a>
+      <a href="fake-news.html">Fake News</a>
+      <a href="image-histoire.html">Image → Histoire</a>
+      <a href="improvisation.html">Improvisation</a>
+      <a href="classe.html">Tirage au sort</a>
+      <a href="login.html">Connexion</a>
+      <span id="auth-status" class="nav-auth"></span>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow-tag">Oral · solo</span>
+      <h1>Studio d'éloquence</h1>
+      <p>Défendez un sujet imposé, en plaçant trois mots obligatoires, dans le temps de préparation choisi.</p>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <div class="container two-col">
+
+      <div>
+        <div class="panel">
+          <p class="panel-title">Sujet à défendre</p>
+          <div class="prompt-box">
+            <p id="topic-text" style="color: var(--ink); font-weight: 700; font-size: 1.15rem; margin: 0 0 14px;"></p>
+            <div class="constraints">
+              <p class="constraint-line"><span class="constraint-mark ok">MOTS</span> <span id="topic-words"></span></p>
+            </div>
+          </div>
+          <div class="field" style="margin-top: 18px;">
+            <button class="btn btn-secondary" id="new-topic" type="button">Nouveau sujet</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Niveau d'absurdité</p>
+          <div class="chip-group" id="level-group">
+            <button class="chip" type="button" data-seconds="90" aria-pressed="false">Normal - 90 s</button>
+            <button class="chip" type="button" data-seconds="60" aria-pressed="true">Drôle - 60 s</button>
+            <button class="chip" type="button" data-seconds="30" aria-pressed="false">Chaos total - 30 s</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Préparation puis passage</p>
+          <div class="timer">
+            <div class="timer-face" id="timer-face">01:00</div>
+            <div>
+              <button class="btn btn-red" id="timer-start" type="button">Commencer</button>
+              <button class="btn btn-secondary" id="timer-reset" type="button" hidden>Réinitialiser</button>
+            </div>
+          </div>
+          <p id="timer-label" style="margin-top: 12px; font-family: var(--font-mono); font-size: 0.85rem;">Préparation</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <p class="panel-title">Notes pour le discours</p>
+          <div class="field">
+            <label for="speech-notes">Écrivez vos arguments avant de parler</label>
+            <textarea id="speech-notes" placeholder="Premier argument, deuxième argument, chute..."></textarea>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Auto-évaluation après le passage</p>
+          <div class="rating-row" data-criterion="Argumentation">
+            <span>Argumentation</span>
+            <div class="stars" data-count="0"></div>
+          </div>
+          <div class="rating-row" data-criterion="Vocabulaire">
+            <span>Vocabulaire</span>
+            <div class="stars" data-count="0"></div>
+          </div>
+          <div class="rating-row" data-criterion="Creativite">
+            <span>Créativité</span>
+            <div class="stars" data-count="0"></div>
+          </div>
+          <div class="rating-row" data-criterion="Humour">
+            <span>Humour</span>
+            <div class="stars" data-count="0"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Chaos Français</span>
+    <a href="index.html">Retour à l'accueil</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/stars.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/eloquence.js"></script>
+</body>
+</html>

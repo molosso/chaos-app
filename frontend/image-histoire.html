@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image → Histoire - Chaos Français</title>
+<meta name="description" content="Importez une image et racontez ce qui s'y passe en au moins dix phrases.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body class="tone-page-teal">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">Chaos <span>Français</span></a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html">Accueil</a>
+      <a href="eloquence.html">Éloquence</a>
+      <a href="histoires.html">Histoires</a>
+      <a href="memes.html">Mèmes</a>
+      <a href="fake-news.html">Fake News</a>
+      <a href="image-histoire.html" aria-current="page">Image → Histoire</a>
+      <a href="improvisation.html">Improvisation</a>
+      <a href="classe.html">Tirage au sort</a>
+      <a href="login.html">Connexion</a>
+      <span id="auth-status" class="nav-auth"></span>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow-tag">Écrit · image personnelle</span>
+      <h1>Image → Histoire</h1>
+      <p>Importez une photo ou une illustration de votre choix, puis racontez la scène en au moins dix phrases.</p>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <div class="container two-col">
+
+      <div>
+        <div class="panel">
+          <p class="panel-title">Votre image</p>
+          <div class="dropzone">
+            <p>Choisissez une image depuis votre appareil, ou tirez-en une au hasard.</p>
+            <input type="file" id="image-input" accept="image/*">
+            <div class="field" style="margin-top: 14px;">
+              <button class="btn btn-teal" id="random-image" type="button">Image aléatoire</button>
+            </div>
+          </div>
+          <p class="count-line" style="margin-top: 10px;">Le bouton "Image aléatoire" charge une photo libre de droits depuis Picsum (photos Unsplash), pas une image générée par IA.</p>
+          <div class="field" style="margin-top: 16px;">
+            <img id="image-preview" class="image-preview" hidden alt="Image affichée pour l'exercice">
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Consigne</p>
+          <div class="prompt-box">
+            <p id="story-prompt" style="color: var(--ink); font-weight: 700; margin: 0;"></p>
+          </div>
+          <div class="field" style="margin-top: 18px;">
+            <button class="btn btn-secondary" id="new-prompt" type="button">Nouvelle consigne</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <div class="field">
+            <label for="image-story-text">Votre récit</label>
+            <textarea id="image-story-text" style="min-height: 320px;" placeholder="Tout a commencé quand..."></textarea>
+          </div>
+          <div class="count-line" id="sentence-count-line">
+            <span id="sentence-count">0 phrase</span>
+            <span>minimum 10</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Chaos Français</span>
+    <a href="index.html">Retour à l'accueil</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/imagehistoire.js"></script>
+</body>
+</html>

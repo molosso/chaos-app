@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tirage au sort - Chaos Français</title>
+<meta name="description" content="Espace enseignant : gérez vos classes et tirez au sort qui lit son travail à voix haute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body class="tone-page-orange">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">Chaos <span>Français</span></a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html">Accueil</a>
+      <a href="eloquence.html">Éloquence</a>
+      <a href="histoires.html">Histoires</a>
+      <a href="memes.html">Mèmes</a>
+      <a href="fake-news.html">Fake News</a>
+      <a href="image-histoire.html">Image → Histoire</a>
+      <a href="improvisation.html">Improvisation</a>
+      <a href="classe.html" aria-current="page">Tirage au sort</a>
+      <a href="login.html">Connexion</a>
+      <span id="auth-status" class="nav-auth"></span>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow-tag">Espace enseignant</span>
+      <h1>Tirage au sort</h1>
+      <p>Vos classes et vos tirages au sort sont maintenant enregistrés sur votre compte : vous les retrouvez d'une séance à l'autre, depuis n'importe quel appareil.</p>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <div class="container">
+
+      <div id="guest-notice" class="notice" style="max-width: 640px;" hidden>
+        <p>Cet outil est réservé aux enseignants. <a href="login.html">Connectez-vous</a> pour gérer vos classes et lancer un tirage au sort.</p>
+      </div>
+
+      <div id="teacher-area" hidden>
+        <div class="two-col">
+
+          <div>
+            <div class="panel">
+              <p class="panel-title">Vos classes</p>
+              <div id="classroom-list" class="badge-list"></div>
+              <div class="field" style="margin-top: 18px;">
+                <label for="new-classroom-name">Créer une nouvelle classe</label>
+                <input type="text" id="new-classroom-name" placeholder="3e B">
+              </div>
+              <button class="btn btn-secondary" id="create-classroom" type="button">Créer</button>
+              <div id="class-join-code" class="notice" hidden style="margin-top: 14px;">
+                <strong>Code pour les élèves : <span id="join-code-value" class="mono"></span></strong>
+                <button class="btn btn-small btn-secondary" id="copy-join-code" type="button">Copier</button>
+              </div>
+            </div>
+
+            <div class="panel" id="add-students-panel" hidden>
+              <p class="panel-title">Ajouter des élèves à <span id="active-classroom-name"></span></p>
+              <div class="field">
+                <label for="names-input">Un prénom par ligne</label>
+                <textarea id="names-input" placeholder="Amine&#10;Lina&#10;Yacine&#10;Meriem" style="min-height: 140px;"></textarea>
+              </div>
+              <button class="btn btn-orange" id="add-students" type="button">Ajouter à la classe</button>
+              <div class="field" style="margin-top: 18px;">
+                <p class="panel-title">Ateliers accessibles dans cette classe</p>
+                <div id="class-workshop-list" class="badge-list"></div>
+                <button class="btn btn-secondary" id="save-class-workshops" type="button">Enregistrer les ateliers</button>
+                <p id="class-workshop-feedback" role="status"></p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="panel" id="draw-panel" hidden>
+              <p class="panel-title">Tirage pour <span id="draw-classroom-name"></span></p>
+              <div class="prompt-box" style="text-align: center; padding: 40px 20px;">
+                <p id="draw-face" style="margin: 0; font-size: 2.4rem; font-weight: 700; color: var(--ink);">Prêt</p>
+              </div>
+              <div class="field" style="margin-top: 18px; text-align: center;">
+                <button class="btn btn-blue" id="draw-name" type="button">Tirer un prénom</button>
+                <button class="btn btn-secondary" id="reset-round" type="button">Nouveau tour</button>
+              </div>
+            </div>
+
+            <div class="panel" id="roster-panel" hidden>
+              <p class="panel-title">Reste à tirer (<span id="remaining-count">0</span>)</p>
+              <div class="badge-list" id="remaining-list"></div>
+            </div>
+
+            <div class="panel" id="history-panel" hidden>
+              <p class="panel-title">Déjà passés</p>
+              <div class="badge-list" id="history-list"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <section class="panel" id="class-submissions-panel" style="margin-top:24px;">
+          <h2>Productions de la classe</h2>
+          <button class="btn btn-secondary" id="export-class-submissions" type="button" disabled>Exporter en CSV</button>
+          <div id="class-submissions-feed" class="admin-activity-feed" aria-live="polite"></div>
+          <p id="class-submissions-empty" hidden>Aucune production déposée dans cette classe pour le moment.</p>
+        </section>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Chaos Français</span>
+    <a href="index.html">Retour à l'accueil</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/classe.js"></script>
+</body>
+</html>

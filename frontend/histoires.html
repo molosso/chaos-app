@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur d'histoires - Chaos Français</title>
+<meta name="description" content="Écrivez une histoire à partir d'un personnage, d'un lieu et d'un objet imposés, avec une contrainte de grammaire.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body class="tone-page-blue">
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">Chaos <span>Français</span></a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html">Accueil</a>
+      <a href="eloquence.html">Éloquence</a>
+      <a href="histoires.html" aria-current="page">Histoires</a>
+      <a href="memes.html">Mèmes</a>
+      <a href="fake-news.html">Fake News</a>
+      <a href="image-histoire.html">Image → Histoire</a>
+      <a href="improvisation.html">Improvisation</a>
+      <a href="classe.html">Tirage au sort</a>
+      <a href="login.html">Connexion</a>
+      <span id="auth-status" class="nav-auth"></span>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow-tag">Écrit · 5 formats</span>
+      <h1>Générateur d'histoires</h1>
+      <p>Un personnage, un lieu et un objet sont imposés. Choisissez un format et respectez la contrainte de grammaire.</p>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <div class="container two-col">
+
+      <div>
+        <div class="panel">
+          <p class="panel-title">Votre mission</p>
+          <div class="prompt-box">
+            <dl>
+              <dt>Personnage</dt><dd id="el-character"></dd>
+              <dt>Lieu</dt><dd id="el-place"></dd>
+              <dt>Objet</dt><dd id="el-object"></dd>
+            </dl>
+            <div class="constraints">
+              <p class="constraint-line"><span class="constraint-mark ok">OK</span> Minimum 150 mots</p>
+              <p class="constraint-line"><span class="constraint-mark ok">OK</span> Utiliser <span id="el-grammar" style="font-weight:700;"></span></p>
+              <p class="constraint-line"><span class="constraint-mark no">NON</span> Le mot <span id="el-ban" style="font-weight:700;"></span> est interdit</p>
+            </div>
+          </div>
+          <div class="field" style="margin-top: 18px;">
+            <button class="btn btn-secondary" id="new-mission" type="button">Nouvelle mission</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="panel-title">Format</p>
+          <div class="chip-group" id="format-group"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <p class="panel-title">Votre texte</p>
+          <div class="field">
+            <label for="story-text">Rédigez ici</label>
+            <textarea id="story-text" placeholder="Il était une fois..." style="min-height: 320px;"></textarea>
+          </div>
+          <div class="count-line" id="count-line">
+            <span id="word-count">0 mot</span>
+            <span id="ban-status"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Chaos Français</span>
+    <a href="index.html">Retour à l'accueil</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/histoires.js"></script>
+</body>
+</html>
